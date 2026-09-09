@@ -4,6 +4,10 @@ Aplicación web para descargar contenido multimedia público o autorizado desde 
 
 > Utiliza la aplicación únicamente con contenido propio, de dominio público o para el que tengas autorización. La disponibilidad depende de cada plataforma; el contenido privado, protegido o con restricciones geográficas puede requerir autenticación o no estar disponible.
 
+## Evidencia de funcionamiento
+
+![Droply ejecutándose localmente con Docker](docs/droply-funcionando.png)
+
 ## Tecnologías
 
 - Python 3.11 y Flask
@@ -120,6 +124,7 @@ caso1/
 ├── static/styles.css
 ├── static/app.js
 ├── tests/test_app.py
+├── docs/droply-funcionando.png
 ├── Dockerfile
 ├── Dockerfile.optimizado
 ├── Dockerfile.multistage
