@@ -4,6 +4,10 @@ Aplicación web local para organizar la verificación de miembros de mesa. Permi
 
 > La web oficial no ofrece una API pública de consulta masiva. La aplicación usa un flujo asistido: el usuario realiza cada consulta en ONPE y registra el resultado. No automatiza CAPTCHA, no hace scraping y no envía DNIs a servicios externos.
 
+## Evidencia de funcionamiento
+
+![Mesa Clara ejecutándose localmente con Docker](docs/mesa-clara-funcionando.png)
+
 ## Funciones
 
 - Importación `.xlsx` con validación de DNI de 8 dígitos y detección de duplicados.
