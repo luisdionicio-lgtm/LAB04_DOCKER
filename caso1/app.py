@@ -34,6 +34,18 @@ QUALITY_OPTIONS = {
     "audio": "bestaudio/best",
 }
 
+
+def download_format(url: str, quality: str) -> str:
+    """Use TikTok's usually pre-combined streams instead of requiring split A/V."""
+    host = (urlparse(url).hostname or "").lower().rstrip(".")
+    if host == "tiktok.com" or host.endswith(".tiktok.com"):
+        if quality == "audio":
+            return "bestaudio/best"
+        if quality == "best":
+            return "best"
+        return f"best[height<={quality}]/best"
+    return QUALITY_OPTIONS[quality]
+
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024
 
@@ -83,7 +95,7 @@ def run_download(job_id: str, url: str, quality: str) -> None:
     job_dir.mkdir(parents=True, exist_ok=True)
     audio_only = quality == "audio"
     options = {
-        "format": QUALITY_OPTIONS[quality],
+        "format": download_format(url, quality),
         "outtmpl": str(job_dir / "%(title).120B [%(id)s].%(ext)s"),
         "noplaylist": True,
         "restrictfilenames": True,

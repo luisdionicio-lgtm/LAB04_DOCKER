@@ -35,3 +35,15 @@ def test_accepts_supported_domain(tmp_path, monkeypatch):
     assert response.status_code == 202
     assert response.get_json()["status"] == "queued"
     assert len(submitted) == 1
+
+
+def test_tiktok_uses_combined_format_with_fallback():
+    url = "https://www.tiktok.com/@usuario/video/7673588558371835143"
+    assert application.download_format(url, "720") == "best[height<=720]/best"
+    assert application.download_format(url, "best") == "best"
+    assert application.download_format(url, "audio") == "bestaudio/best"
+
+
+def test_other_platforms_keep_split_audio_video_format():
+    url = "https://www.youtube.com/watch?v=test"
+    assert application.download_format(url, "720") == application.QUALITY_OPTIONS["720"]
