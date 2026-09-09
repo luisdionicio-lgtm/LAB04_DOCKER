@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Descarga tus propios videos desde plataformas compatibles.">
+  <title>Droply — Descargador multimedia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="nav shell">
+    <a class="brand" href="/" aria-label="Droply, inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 20h14"/></svg>
+      </span>
+      <span>Droply</span>
+    </a>
+    <span class="privacy"><span></span> Archivos privados y temporales</span>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span>●</span> DESCARGAS SIMPLES, SIN RUIDO</div>
+      <h1>Tu contenido favorito,<br><em>listo para llevar.</em></h1>
+      <p class="lead">Pega el enlace de un video público, elige la calidad y nosotros nos encargamos del resto.</p>
+
+      <div class="download-card">
+        <form id="download-form" novalidate>
+          <label for="video-url">Enlace del video</label>
+          <div class="url-row">
+            <div class="url-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"/></svg>
+              <input id="video-url" name="url" type="url" placeholder="https://youtube.com/watch?v=..." autocomplete="url" required>
+            </div>
+            <select id="quality" name="quality" aria-label="Calidad">
+              <option value="best">Máxima</option>
+              <option value="1080">1080p</option>
+              <option value="720" selected>720p</option>
+              <option value="480">480p</option>
+              <option value="audio">Audio MP3</option>
+            </select>
+            <button type="submit" id="submit-button">
+              Descargar
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+          <p class="form-hint">Admite enlaces públicos. El contenido privado puede requerir autenticación.</p>
+        </form>
+
+        <section id="progress-panel" class="progress-panel" hidden aria-live="polite">
+          <div class="progress-head">
+            <div>
+              <span id="status-label">Preparando descarga</span>
+              <small id="status-detail">Esto puede tomar unos segundos</small>
+            </div>
+            <strong id="progress-value">0%</strong>
+          </div>
+          <div class="progress-track"><div id="progress-bar"></div></div>
+          <a id="file-link" class="file-link" href="#" hidden>Guardar archivo</a>
+        </section>
+
+        <div id="error-message" class="error-message" hidden role="alert"></div>
+      </div>
+
+      <div class="platforms" aria-label="Plataformas compatibles">
+        <span>YouTube</span><i></i><span>Instagram</span><i></i><span>TikTok</span><i></i><span>Facebook</span><i></i><span>LinkedIn</span>
+      </div>
+    </section>
+
+    <section class="features">
+      <article>
+        <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h2>Privado por diseño</h2>
+        <p>Las descargas se eliminan automáticamente del servidor después de una hora.</p>
+      </article>
+      <article>
+        <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z"/></svg></span>
+        <h2>Rápido y directo</h2>
+        <p>Procesamiento en segundo plano y progreso visible, sin bloquear tu navegador.</p>
+      </article>
+      <article>
+        <span class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3V9Z"/></svg></span>
+        <h2>Tu calidad, tu formato</h2>
+        <p>Video hasta la máxima calidad disponible o extracción de audio en MP3.</p>
+      </article>
+    </section>
+
+    <section class="legal">
+      <strong>Uso responsable</strong>
+      <p>Descarga únicamente contenido propio, de dominio público o para el que tengas permiso. Respeta los derechos de autor y los términos de cada plataforma.</p>
+    </section>
+  </main>
+
+  <footer class="shell"><span>Droply · Caso práctico 1</span><span>Construido con Flask, yt-dlp y Docker</span></footer>
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>
